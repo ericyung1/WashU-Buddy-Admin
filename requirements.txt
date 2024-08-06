@@ -1,9 +1,5 @@
-openai
-langchain
-Docx2txt
-Pypdf
-streamlit
-streamlit_chat
-tiktoken
-python-dotenv
-chromadb
+langchain==0.2.12
+python-dotenv==1.0.1
+streamlit==1.37.0
+streamlit_chat==0.1.1
+tiktoken==0.7.0
