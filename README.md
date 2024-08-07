@@ -9,3 +9,16 @@ This project is a Streamlit-based application designed to help users upload and 
 - Create embeddings using OpenAI's API
 - Ask questions and get answers using a retrieval-based QA system
 - View chat history
+
+## Installation
+```bash
+pip install -r requirements.txt
+```
+### Usage
+```bash
+streamlit run src/main.py
+```
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
