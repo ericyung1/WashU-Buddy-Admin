@@ -14,6 +14,5 @@ def ask_and_get_answer(vector_store, q, k=3):
         verbose=True
     )
     response = chain.invoke(q)
-    print(response)  # Debug print statement
-    answer = response['answer']  # This line might need to be updated based on the actual response structure
+    answer = response['result']
     return answer

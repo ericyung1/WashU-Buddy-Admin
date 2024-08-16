@@ -1,5 +1,5 @@
-# chatbot.py
 import streamlit as st
+from streamlit_chat import message
 from src.qa import ask_and_get_answer
 
 def chatbot():
@@ -14,6 +14,8 @@ def chatbot():
             
             st.session_state.history.append({"text": q, "is_user": True})
             st.session_state.history.append({"text": answer, "is_user": False})
+        else:
+            st.write("Vector store not found in session state.")
 
     for chat in st.session_state.history:
         message(chat['text'], is_user=chat['is_user'])
