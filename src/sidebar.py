@@ -1,10 +1,14 @@
-# sidebar.py
 import os
+from dotenv import load_dotenv
 import streamlit as st
 from src.utils import clear_history
 from src.document_loader import load_document
 from src.chunker import chunk_data
 from src.embeddings import create_embeddings, calculate_embedding_cost
+from pinecone import Pinecone, ServerlessSpec
+
+# Load environment variables from .env file
+load_dotenv()
 
 def sidebar():
     if 'file_list' not in st.session_state:
@@ -33,7 +37,24 @@ def sidebar():
                 tokens, embedding_cost = calculate_embedding_cost(chunks)
                 st.write(f'Embedding cost: ${embedding_cost:.4f}')
 
-                vector_store = create_embeddings(chunks)
+                # Initialize Pinecone
+                pc = Pinecone(
+                    api_key=os.environ.get('PINECONE_API_KEY')
+                )
+                index_name = 'custom-chatbot-data'
+                if index_name not in pc.list_indexes().names():
+                    pc.create_index(
+                        index_name,
+                        dimension=1536,
+                        metric='euclidean',
+                        spec=ServerlessSpec(
+                            cloud='aws',
+                            region='us-east-1'
+                        )
+                    )
+                index = pc.Index(index_name)
+
+                vector_store = create_embeddings(chunks, index)
                 
                 st.session_state.vs = vector_store
                 st.session_state.file_list.append(uploaded_file.name)
