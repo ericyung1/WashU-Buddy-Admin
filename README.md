@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="https://raw.githubusercontent.com/ericyung1/WashU-Buddy-Admin/main/images/WashU_Buddy_Logo.png" alt="WashU Buddy Logo" width="800">
+  <img src="https://github.com/ericyung1/WashU-Buddy-Admin/blob/main/images/WashU_Buddy_Logo.png" alt="WashU Buddy Logo" width="800">
   <br>
   WashU Buddy Admin Panel
   <br>
